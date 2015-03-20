@@ -1,42 +1,33 @@
 library(XML)
 getwd()
 dir="<C:/Users/C16Mitchell.Melville/Desktop/M Days/Math 378/Getting-and-Cleaning-Data>"
-setwd("C:/Users/C16Mitchell.Melville/Desktop/M Days/Math 378/Getting-and-Cleaning-Data/UCI HAR Dataset/test/Inertial Signals")
-##Test DATA
-body_acc_x_test=read.table("body_acc_x_test.txt")
-body_acc_y_test=read.table("body_acc_y_test.txt")
-body_acc_z_test=read.table("body_acc_z_test.txt")
-body_acc_all_test=c(body_acc_x_test,body_acc_y_test, body_acc_z_test)
+#load the headers
+setwd("C:/Users/C16Mitchell.Melville/Desktop/M Days/Math 378/Getting-and-Cleaning-Data/UCI HAR Dataset")
+features=read.table("features.txt")
+features=t(features)
 
-body_gyro_x_test=read.table("body_gyro_x_test.txt")
-body_gyro_y_test=read.table("body_gyro_y_test.txt")
-body_gyro_z_test=read.table("body_gyro_z_test.txt")
-body_gyro_all_test=c(body_gyro_x_test,body_gyro_y_test,body_gyro_z_test)
-
-total_acc_x_test=read.table("total_acc_x_test.txt")
-total_acc_y_test=read.table("total_acc_y_test.txt")
-total_acc_z_test=read.table("total_acc_z_test.txt")
-total_acc_all_test=c(total_acc_x_test, total_acc_y_test, total_acc_z_test)
+#Test DATA loaded
 
 setwd("C:/Users/C16Mitchell.Melville/Desktop/M Days/Math 378/Getting-and-Cleaning-Data/UCI HAR Dataset/test")
 X_test=read.table("X_test.txt")
+Y_test=read.table("Y_test.txt")
 
+##Train DATA laoded
 
-##Train DATA
-setwd("C:/Users/C16Mitchell.Melville/Desktop/M Days/Math 378/Getting-and-Cleaning-Data/UCI HAR Dataset/train/Inertial Signals")
-body_acc_x_train=read.table("body_acc_x_train.txt")
-body_acc_y_train=read.table("body_acc_y_train.txt")
-body_acc_z_train=read.table("body_acc_z_train.txt")
-body_acc_all_train=c(body_acc_x_train,body_acc_y_train, body_acc_z_train)
-
-body_gyro_x_train=read.table("body_gyro_x_train.txt")
-body_gyro_y_train=read.table("body_gyro_y_train.txt")
-body_gyro_z_train=read.table("body_gyro_z_train.txt")
-body_gyro_all_train=c(body_gyro_x_train,body_gyro_y_train,body_gyro_z_train)
-
-total_acc_x_train=read.table("total_acc_x_train.txt")
-total_acc_y_train=read.table("total_acc_y_train.txt")
-total_acc_z_train=read.table("total_acc_z_train.txt")
-total_acc_all_train=c(total_acc_x_train, total_acc_y_train, total_acc_z_train)
 setwd("C:/Users/C16Mitchell.Melville/Desktop/M Days/Math 378/Getting-and-Cleaning-Data/UCI HAR Dataset/train")
 X_train=read.table("X_train.txt")
+Y_train=read.table("Y_train.txt")
+# combining them all !! one data set to rule them all.
+xTestTrain=rbind(X_test,X_train)
+ytesttrain=rbind(Y_test,Y_train)
+testTrain=cbind(ytesttrain,xTestTrain)
+
+#ommiting all but mean and st
+#try out my method
+ommit=X_test
+ommit=ommit[-c(7:40,47:80)]
+#worked now on the data set
+testTrain1=testTrain #back up incase i break it
+Data=testTrain[-c(8:41,48:81,88:121,128:161,168:201,204:215,218:228.231:266,274:345,352:424,432:562)]
+
+
