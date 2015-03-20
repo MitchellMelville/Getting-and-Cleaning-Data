@@ -30,4 +30,7 @@ ommit=ommit[-c(7:40,47:80)]
 testTrain1=testTrain #back up incase i break it
 Data=testTrain[-c(8:41,48:81,88:121,128:161,168:201,204:215,218:228.231:266,274:345,352:424,432:562)]
 
+# uses the discriptive activity name
+name=
+DataNames=
 
