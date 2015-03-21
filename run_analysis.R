@@ -6,7 +6,9 @@ dir="<C:/Users/C16Mitchell.Melville/Desktop/M Days/Math 378/Getting-and-Cleaning
 setwd("C:/Users/C16Mitchell.Melville/Desktop/M Days/Math 378/Getting-and-Cleaning-Data/UCI HAR Dataset")
 features=read.table("features.txt")
 features=t(features)
-
+filler=matrix(c(" ","Activity"),ncol=1)
+features=cbind(filler,features)
+Features=data.table(features)
 #Test DATA loaded
 
 setwd("C:/Users/C16Mitchell.Melville/Desktop/M Days/Math 378/Getting-and-Cleaning-Data/UCI HAR Dataset/test")
@@ -22,20 +24,21 @@ Y_train=read.table("Y_train.txt")
 xTestTrain=rbind(X_test,X_train)
 ytesttrain=rbind(Y_test,Y_train)
 testTrain=cbind(ytesttrain,xTestTrain)
-testTrainFeatures=rbind(Features,testTrain,fill=T)
-Features=data.table(features)
+testTrainfeatures=rbind(Features,testTrain,fill=T)
+
 
 #ommiting all but mean and st
 #try out my method
 ommit=X_test
 ommit=ommit[-c(7:40,47:80)]
 #worked now on the data set
-testTrain1=testTrain #back up incase i break it
+testTrain1=testTrain
+testTrain=testTrain1#back up incase i break it
 Data=testTrainFeatures
-Data=Data[-c(8:41,48:81,88:121,128:161,168:201,204:215,218:228.231:266,274:345,352:424, 432:563)]
-Data=Data[-c(8:41,48:81)]
+Data=testTrain[-c(8:41,48:81,88:121,128:161,168:201,204:215,218:228.231:266,274:345,352:424,432:562)]
 
-
+testTrain[1,20]
+testTrain[3,21]
 # uses the discriptive activity name
 #1 WALKING
 #2 WALKING_UPSTAIRS
@@ -58,9 +61,7 @@ i=i+1
 }
 View(Data)
 
-filler=matrix(c(" ","Activity"),ncol=1)
-features=cbind(filler,features)
-features=data.table(features)
+
 #editfeatures=features[-c(8:41, 48:81,88:121,128:161,168:201,204:215,218:228.231:266,274:345,352:424,432:562)]
 #head(editfeatures)
 #
