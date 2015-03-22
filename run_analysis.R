@@ -34,9 +34,10 @@ ommit=ommit[-c(7:40,47:80)]
 #worked now on the data set
 testTrain1=testTrain
 testTrain=testTrain1#back up incase i break it
-Data=testTrainFeatures
-Data=testTrain[-c(8:41,48:81,88:121,128:161,168:201,204:215,218:228.231:266,274:345,352:424,432:562)]
 
+Data=testTrain[-c(8:41,48:81,88:121,128:161,168:201,204:215,218:228.231:266,274:345,352:424,432:562)]
+Features=Features[-c(8:41,48:81,88:121,128:161,168:201,204:215,218:228.231:266,274:345,352:424,432:562)]
+]
 testTrain[1,20]
 testTrain[3,21]
 # uses the discriptive activity name
@@ -61,39 +62,31 @@ i=i+1
 }
 View(Data)
 
+#if (j==2)&& (j==3)&&(j==4){walkingmean=walkingmean+Data[i,j] walkingmeancount=walkingmeantcount+1}
+#testmean=as.string(Features[1,])
+#if((grepl(Data[1,j]),))
 
-#editfeatures=features[-c(8:41, 48:81,88:121,128:161,168:201,204:215,218:228.231:266,274:345,352:424,432:562)]
-#head(editfeatures)
-#
+#part five
+tidy=matrix(1:330,ncol=55,nrow=6)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#grepl and aggregate
+i=1
+j=2
+for (j in 2:55){
+  for (i in 1:10299 ){
+  if(Data[i,1]=="WALKING"){
+    #here i would then take the mean or std of the col by stepping 
+    #through and creating total and count for each activity and 
+    #col then display that mean or std in the matrix 'tidy' but I'm out of 
+    #time.
+  if(Data[i,1]=="WALKING_UPSTAIRS"){}
+  if(Data[i,1]=="WALING_DOWNSTAIRS"){}
+  if(Data[i,1]=="SITTING"){}
+  if(Data[i,1]=="STANDING"){}
+  if(Data[i,1]=="LAYING"){}  
+  i=i+1
+  }
+tidy[1,j]=(walkingmean/walkingmeancount)
+j=j+1
+  
+}
+tidy[,1]=c( "WALKING",  "WALKING_UPSTAIRS","WALKING_DOWNSTAIRS", "SITTING", "STANDING","LAYING")
